@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    .hero_area {
+        height: auto;
+        background-color: #b5caee;
+}
+</style>
+<div class="hero-area">
+    <hr style="margin-top: 60px;">
+    <h3 style="font-size: 30px; text-align: center; margin-bottom: 40px;">Are you sure?</h3>
+    <form method="post" style="text-align: center; margin-bottom: 40px;">
+    {% csrf_token %}
+    <input class="btn btn-primary" type="submit" value="Yes">
+    <a class="btn" href="{% url 'base' %}" role = "button" style="background-color: #fbfcfd;">No</a>
+
+
+
+</form>
+ <hr style="background-color:; margin-bottom: 508px;">
+
+{% endblock %}

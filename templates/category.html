@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<section class="col-md-10 py-6">
+<!--    row-->
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                  {% for product in categories %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            {{ product.category.slug }}
+                            {% if product.category.slug == 'notebooks' %}
+                                {% include 'notebook_specification.html' %}
+                            {% else %}
+                                {% include 'smartphone_specification.html' %}
+                            {% endif %}
+                          <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+                            <!-- Product image-->
+<!--                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
+                            <!-- Product details-->
+                          <div class="card-body p-4">
+                                <div class="text-center">
+                                  <h4 class="card-title">
+                                    <a href="{{ category.get_absolute_url }}">{{ product.title }}</a>
+                                  </h4>
+                                  <h5 class="fw-bolder">{{ product.price }}</h5>
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+                  {% endfor %}
+                </div>
+            </div>
+  </section>
+
+{% endblock content%}

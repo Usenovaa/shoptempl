@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<h1>Search results: </h1>
+
+{% if products %}
+<div class="grid" style="margin-bottom: 40px;">
+                    {% for p in products %}
+                    <div class="grid-item grid-item-catalog">
+                        <div class="bg-white" style="pading:20px">
+                            <div class="thumb">
+                                <img src=" media/{{ p.image }}" style="width: 250px; height:250px;" alt="Photo">
+                            </div>
+                            <div style="margin-left: 100px;">
+                                <p class="grid-first_title" style="margin-bottom:0;">{{ p.title }}</p>
+                                <p class="grid-title" style="margin-bottom:0;">{{ p.descriptions|truncatewords:8 }}</p>
+                                <p class="grid-title" style="margin-bottom:0;">Цена: {{ p.price }}$</p>
+                                <p class="grid-title" style="margin-bottom:0;">Категория: {{ p.category }}</p>
+                                <a style="text-align:center; text-decoration: none; color: brown; font-size: 20px; margin-left: 145px;" href="{% url 'detail' p.id %}">Подробней</a>
+                            <div/>
+                                 {% if request.user.username == "admin" %}
+                            <div style="display: flex; justify-content: space-between;">
+                                <a style="text-align:center; text-decoration: none; color: red; font-size: 20px;" href="{% url 'product_update' p.id %}">Изменить</a>
+
+                                <a style="text-align:center; text-decoration: none; color: red; font-size: 20px;;" href="{% url 'product_delete' p.id %}">Удалить</a>
+                            </div>
+                            {% endif %}
+                            <hr>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+</div>
+
+
+
+{% else %}
+<h1 style="color: red; text-align: center; margin: 90px;">Ничего не найдено по данному запросу</h1>
+{% endif %}
+{% endblock %}

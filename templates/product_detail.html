@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .hero_area {
+        height: auto;
+        background-color: #b5caee;
+}
+</style>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
+    <li class="breadcrumb-item"><a href="#">{{ product.category.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+  </ol>
+</nav>
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{ product.image.url }}" class="img-fluid">
+    </div>
+    <div class="cl-ng-8" >
+        <p>Характеристики: </p>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Описание</td>
+                    <td>{{ product.descriptions }}</td>
+                </tr>
+                <tr>
+                    <td>Цуна</td>
+                    <td>{{ product.price  }}</td>
+                </tr>
+                <tr>
+                    <td>Количество</td>
+                    <td>{{ product.quantity }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post" style="margin-bottom: 30px; font-size: 18px;">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="В корзину">
+
+    </form>
+    </div>
+</div>
+
+
+{% endblock content %}

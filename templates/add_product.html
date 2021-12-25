@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .hero_area {
+        height: auto;
+        background-color: #b5caee;
+}
+</style>
+
+<div class="container" style="background-color: #b5caee;">
+   <form method="post" class="" enctype="multipart/form-data" style="border-radius: 2px; border: 7px solid white; border-radius: 16px; padding: 20px; margin-block: 28px;">
+
+    {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="mb-3 white-important">
+                New product
+            </legend>
+            {{ form | crispy }}
+        </fieldset>
+
+
+    <input class="btn btn-primary" type="submit" value="Create" style="font-size: 17px; color: white; border-color: #273135;;     margin-top: 25px;   margin-bottom: 25px; background-color: #273135;;">
+
+   </form>
+</div>
+{% endblock %}
